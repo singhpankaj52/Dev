@@ -6,7 +6,8 @@
     vcenter_hostname: 192.168.100.10
     vcenter_username: administrator@vsphere.local
     vcenter_password: Pinfo@123
-    esxi_hostname: pisesx001.pinfo.local 
+    esxi_hostname: pisesx001.pinfo.local
+    esxi_username: root
   tasks:
     - name: Add new local user to ESXi host
       community.vmware.vmware_host_user_manager:  
@@ -22,7 +23,7 @@
         
     - name: Adding user to admin group in cluster "{{ PIS_Cluster }}"
       community.vmware.vmware_object_role_permission:
-        hostname: "{{ inventory_hostname }}"
+        hostname: "{{ esxi_hostname }}"
         username: "{{ esxi_username }}"
         password: "{{ vcenter_password }}"
         validate_certs: false
