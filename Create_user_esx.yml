@@ -1,0 +1,21 @@
+---
+- name: "test playbook of #280"
+  hosts: localhost
+  gather_facts: no
+  vars:
+    vcenter_hostname: 192.168.100.10
+    vcenter_username: administrator@vsphere.local
+    vcenter_password: Pinfo@123
+    esxi_hostname: pisesx001.pinfo.local 
+  tasks:
+    - name: Add new local user to ESXi host
+      community.vmware.vmware_host_user_manager:  
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: false
+        esxi_hostname: "{{ esxi_hostname }}"
+        user_name: Pankaj
+        user_description: "example user"
+        user_password: "Pinfo@123"
+        state: present

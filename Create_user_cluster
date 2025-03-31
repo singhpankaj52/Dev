@@ -1,0 +1,28 @@
+   - hosts: all
+     gather_facts: no
+     connection: local
+     vars_files:
+       - all_config.yml
+     tasks:
+     - name: Add new local user in cluster "{{ PIS_Cluster }}"
+       community.vmware.vmware_host_user_manager:  
+          hostname: "{{ vcenter_hostname }}"
+          username: "{{ vcenter_username }}"
+          password: "{{ vcenter_password }}"
+          validate_certs: false
+          esxi_hostname: "{{ inventory_hostname }}"
+          user_name: c88648
+          user_description: "root account"
+          user_password: "Pinfo@123"
+          state: present
+     - name: Adding user to admin group in cluster "{{ PIS_Cluster }}"
+       community.vmware.vmware_object_role_permission:
+          hostname: "{{ inventory_hostname }}"
+          username: "{{ esxi_username }}"
+          password: "{{ vcenter_password }}"
+          validate_certs: false
+          object_name: rootFolder
+          role: Administrator
+          principal: c88648
+          state: present
+

@@ -1,0 +1,6 @@
+vcenter_hostname: pisvc01.pinfo.local
+vcenter_username: administrator@vsphere.local
+vcenter_password: Pinfo@123
+esxi_username: root
+esxi_password: Pinfo@123
+PIS_Cluster: ND-WL-CL02

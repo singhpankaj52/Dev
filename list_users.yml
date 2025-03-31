@@ -1,0 +1,19 @@
+   - hosts: all
+     gather_facts: no
+     connection: local
+     vars_files:
+       - all_config.yml
+     tasks:
+     - name: Gather info about all Users on given ESXi host system
+       community.vmware.vmware_local_user_info:
+         hostname: "{{ inventory_hostname }}"
+         username: '{{ esxi_username }}'
+         password: '{{ esxi_password }}'
+         validate_certs: false
+       delegate_to: localhost
+       register: all_user_info
+     - name: Print output to file
+       ansible.builtin.copy:
+        content: "{{all_user_info}}"
+        dest: /tmp/esxi_local_user.csv
+       delegate_to: localhost

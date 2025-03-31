@@ -1,0 +1,50 @@
+---
+- name: "test playbook of #280"
+  hosts: localhost
+  gather_facts: no
+  vars:
+    vcenter_hostname: 192.168.100.10
+    vcenter_username: administrator@vsphere.local
+    vcenter_password: Pinfo@123
+    esxi_hostname: pisesx001.pinfo.local 
+  tasks:
+    #- name: "Gather services info for ESXi"
+    # vmware_host_service_info:
+    #   hostname: "{{ vcenter_hostname }}"
+    #   username: "{{ vcenter_username }}"
+    #   password: "{{ vcenter_password }}"
+    #   validate_certs: no
+    #   esxi_hostname: "{{ esxi_hostname }}"
+    # register: gather_services_result
+
+    #- debug:
+    #   msg: "{{ item }}"
+    # loop: "{{ gather_services_result.host_service_info[esxi_hostname] }}"
+    # when:
+    #   - item.key == "TSM-SSH"
+
+    - name: "Enable SSH service of ESXi"
+      vmware_host_service_manager:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: no
+        esxi_hostname: "{{ esxi_hostname }}"
+        service_name: TSM-SSH
+        service_policy: "on"
+        state: present
+
+        #- name: "Gather services info for ESXi"
+        #vmware_host_service_info:
+        #hostname: "{{ vcenter_hostname }}"
+        #username: "{{ vcenter_username }}"
+        #password: "{{ vcenter_password }}"
+        #validate_certs: no
+        #esxi_hostname: "{{ esxi_hostname }}"
+        #register: gather_services_result
+
+        #- debug:
+        #msg: "{{ item }}"
+        #loop: "{{ gather_services_result.host_service_info[esxi_hostname] }}"
+        #when:
+        #- item.key == "TSM-SSH"
