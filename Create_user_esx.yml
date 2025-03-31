@@ -23,7 +23,7 @@
         
     - name: Adding user to admin group in cluster "{{ PIS_Cluster }}"
       community.vmware.vmware_object_role_permission:
-        hostname: "{{ esxi_hostname }}"
+        hostname: 192.168.100.120
         username: "{{ esxi_username }}"
         password: "{{ vcenter_password }}"
         validate_certs: false
