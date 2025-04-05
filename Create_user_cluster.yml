@@ -15,6 +15,7 @@
           user_description: "root account"
           user_password: "Pinfo@123"
           state: present
+       delegate_to: localhost
      - name: Adding user to admin group in cluster "{{ PIS_Cluster }}"
        community.vmware.vmware_object_role_permission:
           hostname: "{{ inventory_hostname }}"
@@ -25,4 +26,5 @@
           role: Administrator
           principal: c88648
           state: present
+       delegate_to: localhost
 
