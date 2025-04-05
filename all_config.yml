@@ -1,4 +1,4 @@
-vcenter_hostname: pisvc01.pinfo.local
+vcenter_hostname: 192.168.100.10
 vcenter_username: administrator@vsphere.local
 vcenter_password: Pinfo@123
 esxi_username: root
