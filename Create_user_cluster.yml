@@ -15,4 +15,5 @@
           user_description: "root account"
           user_password: "Pinfo@123"
           state: present
+       delegate_to: localhost
 
