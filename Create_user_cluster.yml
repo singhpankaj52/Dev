@@ -15,4 +15,4 @@
           user_description: "root account"
           user_password: "Pinfo@123"
           state: present
-       delegate_to: 192.168.100.55
+       delegate_to: 192.168.100.50
