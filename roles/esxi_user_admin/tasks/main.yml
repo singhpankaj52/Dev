@@ -1,0 +1,5 @@
+- name: Create ESXi user
+  import_tasks: Create_user.yml
+
+- name: Assign Admin role to user
+  import_tasks: add_user.yml
